@@ -31,13 +31,13 @@ void aih::SimpleHttpServer::handle(int fd) {
         res<<"HTTP/1.1 "<<r->status<<(r->status==200?" OK":r->status==201?" Created":r->status==204?" No Content":"")<<"\r\n"
            <<"Content-Type: "<<r->type<<"\r\n"
            <<"Content-Length: "<<r->body.size()<<"\r\n\r\n"<<r->body;
-    } else res<<"HTTP/1.1 404 Not Found\r\nContent-Length:0\r\n\r\n";
+    } else res << "HTTP/1.1 404 Not Found\r\nContent-Length:0\r\n\r\n";
     auto s=res.str(); send(fd,s.data(),s.size(),0);
 }
 
 [[noreturn]] void aih::SimpleHttpServer::run() {
-    int srv=socket(AF_INET,SOCK_STREAM,0),opt=1;
-    setsockopt(srv,SOL_SOCKET,SO_REUSEADDR,&opt,sizeof(opt));
+    int srv = socket(AF_INET,SOCK_STREAM,0), opt = 1;
+    setsockopt(srv, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
     sockaddr_in a{AF_INET,htons(port_),INADDR_ANY};
     bind(srv,(sockaddr*)&a,sizeof(a)); listen(srv,10);
     std::cout<<"HTTP on "<<port_<<"\n";
