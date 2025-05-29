@@ -5,6 +5,10 @@ This is a template for a C++ project that follows the hexagonal architecture pat
 ## Features
 - Hexagonal architecture
 - CMake build system
+- CLI Controller
+- Simple HTTP Server & Controller
+- File System Database
+- Create, Read, Delete (CRD) operations in User Data
 
 ## Platform Support
 - Linux
@@ -45,10 +49,10 @@ This is a template for a C++ project that follows the hexagonal architecture pat
    ```
    
 ## How to check data file(file system database)
-    ```bash
+   ```bash
    cd build/src/data
    cat users.csv
-    ```
+   ```
    
 ## License
 This project is licensed under the MIT License.
